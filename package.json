@@ -1,0 +1,23 @@
+{
+  "name": "gpu-guru",
+  "version": "1.0.0",
+  "description": "Storefront dashboard to sell graphics cards",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t-fisher98/gpu-guru.git"
+  },
+  "author": "Tyler Fisher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/t-fisher98/gpu-guru/issues"
+  },
+  "homepage": "https://github.com/t-fisher98/gpu-guru#readme",
+  "dependencies": {
+    "firebase": "^9.6.6",
+    "parcel": "^2.2.1"
+  }
+}

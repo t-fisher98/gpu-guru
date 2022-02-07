@@ -11,21 +11,66 @@
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="./assets/favicon/gpu-guru.ico">
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/styles.css">
 
   <!-- Scripts -->
-  <script src="js/main.js" defer></script>
+  <script type="module" src="js/main.js" defer></script>
+  <script src="https://kit.fontawesome.com/7807d8165d.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <div>
-      <h1>GPU Guru</h1>
+    <div class="container">
+      <a href="#"><h1>GPU Guru</h1></a>
+      <nav class="top-level-nav">
+        <ul>
+          <li>
+            <a href="#" class="account">
+              <i class="fas fa-user-alt fa-sm"></i>
+              Account
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </header>
 
   <main>
+    <div class="side-bar">
+      <div>
+        <ul>
+          <li>
+            <a></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <form id="productForm" class="add-new-product">
+      <div class="product-image form-control">
+        <div class="display">
+          <img src="assets/images/EVGA-3080.png" alt="EVGA 3080">
+        </div>
+
+        <label for="productImage">Select Image</label>
+        <input type="file" id="productImage" style="display:none" class="select-file" accept=".jpg, .png, .jpeg, .webp">
+      </div>
+
+      <div class="product-name form-control">
+        <label for="productName">Product Name</label>
+        <input id="productName" type="text" placeholder="EVGA 3080"/>
+      </div>
+      
+      <div class="submit-button form-control">
+        <button type="submit">Add Product</button>
+      </div>
+    </form>
 
   </main>
 

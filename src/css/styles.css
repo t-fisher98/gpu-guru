@@ -9,7 +9,7 @@ header div{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 0 0.25rem;
   background-color: #0062FF;
   color: white;
 }
@@ -40,13 +40,28 @@ div.side-bar{
   background-color: grey;
   width: 11.5rem;
   position: fixed;
-  top: 7.4rem;
+  top: 5.4rem;
   left: 0;
   bottom: 0;
   z-index: 1000;
 }
 
+/* Form Styling */
+
 form.add-new-product{
   max-width: 360px;
-  margin: auto;
+  margin: 3rem auto;
+  border: 1px solid grey;
+}
+
+div.display {
+  border: 1px solid grey;
+}
+
+.product-image label {
+  font-size: 14px;
+  font-weight: 300;
+  border-radius: 3px;
+  padding: 0.25rem 1rem;
+  box-shadow: 0 0 1px 1px #d6d3d1;
 }

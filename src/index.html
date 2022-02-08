@@ -52,25 +52,27 @@
       </div>
     </div>
 
-    <form id="productForm" class="add-new-product">
-      <div class="product-image form-control">
-        <div class="display">
-          <img src="assets/images/EVGA-3080.png" alt="EVGA 3080">
+    <div class="dashboard">
+      <form id="productForm" class="add-new-product">
+        <div class="product-image form-control">
+          <div class="display">
+            <img src="assets/images/EVGA-3080.png" alt="EVGA 3080">
+          </div>
+  
+          <label for="productImage">Select Image</label>
+          <input type="file" id="productImage" style="display:none" class="select-file" accept=".jpg, .png, .jpeg, .webp">
         </div>
-
-        <label for="productImage">Select Image</label>
-        <input type="file" id="productImage" style="display:none" class="select-file" accept=".jpg, .png, .jpeg, .webp">
-      </div>
-
-      <div class="product-name form-control">
-        <label for="productName">Product Name</label>
-        <input id="productName" type="text" placeholder="EVGA 3080"/>
-      </div>
-      
-      <div class="submit-button form-control">
-        <button type="submit">Add Product</button>
-      </div>
-    </form>
+  
+        <div class="product-name form-control">
+          <label for="productName">Product Name</label>
+          <input id="productName" type="text" placeholder="EVGA 3080"/>
+        </div>
+        
+        <div class="submit-button form-control">
+          <button type="submit">Add Product</button>
+        </div>
+      </form>
+    </div>
 
   </main>
 

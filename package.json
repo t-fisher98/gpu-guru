@@ -4,7 +4,9 @@
   "description": "Storefront dashboard to sell graphics cards",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf node_modules .git .parcel-cache dist .DS_Store",
+    "static": "cp -rf ./src/static .dist",
+    "start": "npx parcel src/index.html"
   },
   "repository": {
     "type": "git",

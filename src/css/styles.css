@@ -1,61 +1,104 @@
+/* Custom CSS Properties */
+:root {
+  --ui: #1d2733;
+  --orange: #ff9000;
+}
+
 body{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Changa', sans-serif;
 }
 
 /* Utility Classes */
-
-
-header div{
+.flex {
   display: flex;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+header > div{
   justify-content: space-between;
-  align-items: center;
-  padding: 0 0.25rem;
-  background-color: #0062FF;
+  background-color: var(--ui);
   color: white;
+  padding: 0.5rem;
+}
+
+header a{
+  text-decoration: none;
+  color: white;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+}
+
+header a.user-controls:hover{
+  background-color: var(--orange);
+  border-radius: 5px;
+  color: var(--ui);
+  transition: all 0.25s ease-in-out;
+}
+
+h1 {
+  color: var(--orange);
+  line-height: 0.5;
+}
+
+h1 div {
+  align-items: center;
+}
+
+h1 span {
+  font-size: 3rem;
+}
+
+h1 img {
+  width: 2.5rem;
+}
+
+.app-bar ul {
+  gap: 0.5rem;
+}
+
+.app-bar svg {
+  height: 1rem;
 }
 
 li{
   list-style: none;
 }
 
-header a{
-  text-decoration: none;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.5rem;
+div.products {
+  margin-left: 16rem;
+  padding-top: 4rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
 }
 
-header a.account:hover{
-  background-color: #db7c00;
-  border-radius: 5px;
-}
-
-header a > h1:hover{
-  color: #db7c00;
+div.card{
+  max-width: 20rem;
+  box-shadow: 0 0 2px 2px #d6d3d1;
+  border-radius: 0.3rem;
 }
 
 div.side-bar{
-  background-color: grey;
-  width: 11.5rem;
+  background-color: var(--ui);
+  width: 10%;
+  height: 100vh;
   position: fixed;
-  top: 5.4rem;
+  top: 6rem;
   left: 0;
-  bottom: 0;
-  z-index: 1000;
 }
 
-/* Form Styling */
-
-form.add-new-product{
-  max-width: 360px;
-  margin: 3rem auto;
-  border: 1px solid grey;
+.dash-nav {
+  position: relative;
 }
 
-div.display {
-  border: 1px solid grey;
+div.product-properties {
+  background-color: #f3f3f3;
 }
 
 .product-image label {

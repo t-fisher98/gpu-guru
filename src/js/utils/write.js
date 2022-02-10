@@ -27,15 +27,7 @@ function onImageSelected(e) {
 
   // Update the display with the requested image
   document.querySelector(".display img").src = URL.createObjectURL(file);
-  // checkImageUpload(file);
 }
-
-// async function checkImageUpload(file) {
-//   // Get a reference to the path where we want to store the image.
-//   const imageRef = await storageRef(storage, file.name);
-//   const confirmation = await uploadBytes(imageRef, file);
-//   const path = await getDownloadURL(imageRef);
-// }
 
 async function uploadNewProduct() {
   // Reference variables to the dom elements

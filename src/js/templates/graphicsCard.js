@@ -34,21 +34,21 @@ function graphicsCard({ key, urlPath, sku, description, price, brandLogo }) {
   return element;
 }
 
-function addProductControls(product) {
-  product.querySelector("#edit").addEventListener("click", onEditProduct);
-  product.querySelector("#delete").addEventListener("click", onRemoveProduct);
+function addProductControls(element) {
+  element.querySelector("#edit").addEventListener("click", onEditProduct);
+  element.querySelector("#delete").addEventListener("click", onRemoveProduct);
 }
 
 function onEditProduct(e) {
-  const key = e.target.dataset.key;
+  const key = e.currentTarget.dataset.key;
   sessionStorage.setItem("key", key);
-  window.location.assign("update.html");
+  window.location.href = ('update.html');
 }
 
 function onRemoveProduct(e) {
-  const key = e.target.dataset.key;
+  const key = e.currentTarget.dataset.key;
   sessionStorage.setItem("key", key);
-  window.location.assign("delete.html");
+  window.location.assign('delete.html');
 }
 
-export { graphicsCard };
+export { graphicsCard }

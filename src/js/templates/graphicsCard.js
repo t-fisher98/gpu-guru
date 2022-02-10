@@ -1,36 +1,54 @@
 
-function graphicsCard({ key, city, urlPath }) {
+function graphicsCard({ key, urlPath, sku, description, price, brandLogo }) {
   const template = `
     <div class="card">
-      <img src="./assets/images/EVGA-3080.png" alt="graphical processing unit">
-      <div class="product-properties">
-        <h2 class="title">EVGA 3080</h2>
-        <p class="price">$1979.99</p>
-        <p class="sku">GG12345</p>
-        <img src="./assets/images/rating.svg" alt="product rating">
+      <div class="card-top">
+        <div class="product-image">
+          <button id="edit" class="edit" data-key="${key}">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+          <button id="delete" class="delete" data-key="${key}">
+            <i class="bi bi-trash"></i>
+          </button>
+          <img src="${urlPath}" alt="graphical processing unit">
+        </div>
+        <div class="product-properties">
+          <div class="flex">
+            <img src="${brandLogo}" alt="brand logo">
+            <p class="sku">${sku}</p>
+          </div>
+          <p class="product-description">${description.substring(0, 75)}</p>
+        </div>
+      </div>
+      <div class="product-price">
+        <p class="price">$${price} CAD</p>
+        <button id="buy" class="buy" data-key="${key}">
+          Buy Now
+        </button>
       </div>
     </div>
     `;
   const element = document.createRange().createContextualFragment(template)
     .children[0];
-  addRentalControls(element);
+  addProductControls(element);
   return element;
 }
 
-function addRentalControls(rental) {
-  rental.querySelector("#edit").addEventListener("click", onEditRental);
-  rental.querySelector("#delete").addEventListener("click", onRemoveRental);
+function addProductControls(product) {
+  product.querySelector("#edit").addEventListener("click", onEditProduct);
+  product.querySelector("#delete").addEventListener("click", onRemoveProduct);
 }
 
-function onEditRental(e) {
+function onEditProduct(e) {
   const key = e.target.dataset.key;
   sessionStorage.setItem("key", key);
   window.location.assign("update.html");
 }
 
-function onRemoveRental(e) {
+function onRemoveProduct(e) {
   const key = e.target.dataset.key;
   sessionStorage.setItem("key", key);
   window.location.assign("delete.html");
 }
+
 export { graphicsCard };

@@ -13,11 +13,15 @@ body{
   display: flex;
 }
 
+/* Universal Styles */
+
 header {
   position: sticky;
   top: 0;
   left: 0;
   right: 0;
+  z-index: 1000;
+  box-shadow: 0 3px 3px rgb(102, 102, 102);
 }
 
 header > div{
@@ -33,13 +37,15 @@ header a{
   flex-direction: column;
   align-items: center;
   padding: 0.25rem 0.5rem;
+  line-height: 1.25;
 }
 
 header a.user-controls:hover{
   background-color: var(--orange);
   border-radius: 5px;
   color: var(--ui);
-  transition: all 0.25s ease-in-out;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
 }
 
 h1 {
@@ -59,6 +65,10 @@ h1 img {
   width: 2.5rem;
 }
 
+li {
+  list-style: none;
+}
+
 .app-bar ul {
   gap: 0.5rem;
 }
@@ -67,44 +77,227 @@ h1 img {
   height: 1rem;
 }
 
-li{
-  list-style: none;
+div.side-bar{
+  background-color: var(--ui);
+  width: 10rem;
+  height: 100vh;
+  position: fixed;
+  top: 6rem;
+  left: 0;
+  z-index: 1000;
+}
+
+.dash-nav {
+  position: relative;
+  top: 4rem;
+  padding: 0;
+  margin: 0;
+}
+
+.dash-nav li {
+  text-align: center;
+  color: white;
+}
+
+.dash-nav li a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  font-size: 1.25rem;
+  padding: 0.5rem 0;
+}
+
+.dash-nav li a:hover {
+  background-color: var(--orange);
+  color: var(--ui);
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
 }
 
 div.products {
-  margin-left: 16rem;
+  margin-left: 14rem;
   padding-top: 4rem;
   flex-wrap: wrap;
   gap: 1.5rem;
 }
 
+/* Read Page Styling */
+
 div.card{
   max-width: 20rem;
-  box-shadow: 0 0 2px 2px #d6d3d1;
-  border-radius: 0.3rem;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 5px rgb(209, 209, 209);
 }
 
-div.side-bar{
-  background-color: var(--ui);
-  width: 10%;
-  height: 100vh;
-  position: fixed;
-  top: 6rem;
-  left: 0;
+div.card-top {
+  border: 3px solid var(--ui);
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
 }
 
-.dash-nav {
+div.product-image {
   position: relative;
+  padding: 0.5rem;
+  flex-direction: column;
+  justify-content: center;
+}
+
+div.product-image button {
+  position: absolute;
+  border-radius: 50%;
+  border: 0.5px solid grey;
+  background-color: var(--ui);
+  color: white;
+}
+
+div.product-image button:hover {
+  cursor: pointer;
+  background-color: var(--orange);
+  color: var(--ui);
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+div.product-image button.edit {
+  right: 3.5rem;
+}
+
+div.product-image button.delete {
+  right: 1rem;
 }
 
 div.product-properties {
-  background-color: #f3f3f3;
+  padding: 0 0.5rem 0.5rem;
 }
 
-.product-image label {
-  font-size: 14px;
-  font-weight: 300;
-  border-radius: 3px;
-  padding: 0.25rem 1rem;
-  box-shadow: 0 0 1px 1px #d6d3d1;
+div.product-properties > div {
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
 }
+
+div.product-properties img {
+  max-height: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+div.product-price {
+  background-color: var(--ui);
+  border-radius: 0 0 5px 5px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+p.price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--orange);
+}
+
+button.buy {
+  background-color: var(--ui);
+  color: var(--orange);
+  border: 2px solid var(--orange);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+}
+
+button.buy:hover {
+  cursor: pointer;
+  background-color: var(--orange);
+  color: var(--ui);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Write Page Styling */
+
+div.new-product {
+  margin-left: 10rem;
+  padding-top: 2rem;
+  flex-direction: column;
+  color: var(--ui);
+}
+
+div.new-product h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+form.add-new-product {
+  max-width: 40rem;
+  box-shadow: 0 0 3px grey;
+  border-radius: 0.25rem;
+  margin: 0 auto;
+}
+
+div.product-image label,
+input.add-product {
+  width: 100%;
+  margin: 1rem auto 0px;
+  padding: 0.25rem 1rem;
+  text-align: center;
+  font-size: 1rem;
+  background-color: var(--ui);
+  color: white;
+  border-radius: 5px;
+}
+
+div.product-image label:hover,
+input.add-product:hover {
+  cursor: pointer;
+  background-color: var(--orange);
+  color: var(--ui);
+  font-weight: bold;
+}
+
+input.add-product {
+  border: none;
+}
+
+div.product-inputs {
+  padding: 0 1rem 1rem;
+}
+
+div.product-inputs > div:first-child {
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+div.product-inputs > div:first-child label {
+  width: 50%;
+}
+
+div.product-inputs > div:nth-child(2) label {
+  width: 100%;
+  margin: 0 auto;
+}
+
+div.product-inputs > div:first-child input,
+div.product-inputs > div:first-child select {
+  height: 2rem;
+  border: 2px solid var(--ui);
+  border-radius: 5px;
+  padding: 0 0.5rem;
+}
+
+form.add-new-product div.product-inputs > div[class="flex"] label {
+  flex-direction: column;
+}
+
+textarea.description {
+  resize: none;
+  border: 2px solid var(--ui);
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+div.product-inputs > div:first-child input:focus,
+div.product-inputs > div:first-child select:focus,
+textarea.description:focus {
+  outline: 2px solid var(--orange);
+  border-color: var(--orange);
+}
+

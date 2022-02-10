@@ -36,19 +36,43 @@ async function checkImageUpload(file) {
 }
 
 async function uploadNewProduct() {
-  const productName = document.querySelector("#productName").value.trim();
+  // Reference variables to the dom elements
   const file = document.querySelector("#productImage").files[0];
-  const imageRef = await storageRef(storage, `images/${file.name}`);
-  const dataRef = await databaseRef(db, "products");
+  const brand = document.querySelector("#brandSelect").value.trim() + '-logo.png';
+  const price = document.querySelector("#price").value;
+  const description = document.querySelector("#description").value;
+
+  // Reference to where the image will be stored
+  const imageRef = await storageRef(storage, `images/product-images/${file.name}`);
+  console.log(imageRef)
+
+  // Reference to where the brand logo is stored
+  const brandRef = await storageRef(storage, `images/brand-logos/${brand}`);
+  console.log(brandRef)
+
+  // Reference to where the data object will be stored
+  const dataRef = await databaseRef(db, 'products');
+
+  // Url to the brand logo image in storage
+  const brandLogo = await getDownloadURL(brandRef);
+  console.log(brandLogo)
+
+  // Uploading the image to the storage bucket
   const uploadResult = await uploadBytes(imageRef, file);
-  const path = await getDownloadURL(imageRef);
-  const imagePath = uploadResult.metadata.fullPath;
-  const itemRef = push(dataRef);
-  console.log(itemRef);
+
+  // Url to the product image in storage
+  const urlPath = await getDownloadURL(imageRef);
+  console.log(urlPath)
+
+  // const imagePath = uploadResult.metadata.fullPath;
+  const itemRef = await push(dataRef);
 
   set(itemRef, {
     key: itemRef.key,
-    path,
-    productName,
+    urlPath,
+    sku: "GG" + itemRef.key.substring(0, 7).toUpperCase(),
+    price,
+    description,
+    brandLogo,
   });
 }

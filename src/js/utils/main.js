@@ -5,15 +5,11 @@ import { graphicsCard } from "../templates/graphicsCard"
 async function pageInit() {
   const productRef = dataRef(db, "products/");
   const rentalSnapShot = await get(productRef);
-  const data = rentalSnapShot.val();
+  const productData = rentalSnapShot.val();
 
-  console.log(productRef);
-  console.log(rentalSnapShot);
-  console.log(data);
-
-  Object.values(data).map((rental) => {
-    const card = graphicsCard(rental);
-    document.querySelector("main").append(card);
+  Object.values(productData).map((product) => {
+    const card = graphicsCard(product);
+    document.querySelector(".products").append(card);
   });
 }
 

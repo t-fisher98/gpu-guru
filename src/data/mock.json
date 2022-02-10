@@ -1,0 +1,12 @@
+{
+  "products": {
+    "-MvSs8NR-DHOASDkfdy2": {
+      "imagePath": "images/EVGA-3080.png",
+      "key": "-MvSs8NR-DHOASDkfdy2",
+      "sku": "GG{key}",
+      "price": "1500",
+      "description": "GeForce 3080Ti",
+      "brandLogo": "evga"
+    }
+  }
+}

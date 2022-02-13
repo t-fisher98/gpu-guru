@@ -25,51 +25,111 @@
   <script type="module" src="./js/utils/main.js" defer></script>
 </head>
 <body>
-  <header>
-    <div class="container flex">
-      <a href="index.html">
-        <h1>
+  <div class="page-content flex">
+
+    <div class="sidebar">
+      <div class="sidebar-dark flex">
+        <a href="index.html">
           <div class="flex">
-            GPU
-            <img src="static/favicon/gpu-logo.svg" alt="SVG of a graphical processing unit">
+            <img src="static/favicon/gpu-logo.svg" alt="SVG of a graphical processing unit" class="logo">
+            <h1>Guru</h1>
           </div>
-           <span>Guru</span>
-        </h1>
-      </a>
-      <nav class="app-bar">
-        <ul class="flex">
+        </a>
+        <button id="toggle" class="toggle">
+          <i class="bi bi-arrow-left-right"></i>
+        </button>
+      </div>
+      <div class="sidebar-content">
+        <ul class="sidebar-nav">
           <li>
-            <a href="#" class="flex user-controls">
-              <i class="bi bi-person-circle"></i>
-              Account
+            <a href="index.html" class="flex">
+              <i class="bi bi-house"></i>
+              <span>Dashboard</span>
             </a>
           </li>
           <li>
-            <a href="#" class="flex user-controls">
-              <i class="bi bi-gear-fill"></i>
-              Settings
+            <a href="write.html" class="flex">
+              <i class="bi bi-plus-circle"></i>
+              <span>Add Product</span>
             </a>
           </li>
         </ul>
-      </nav>
+      </div>
+    </div> <!-- sidebar -->
+
+    <div class="dashboard-wrapper">
+      <header>
+        <div class="flex">
+          <nav class="app-bar">
+            <ul class="flex">
+              <li>
+                <a href="#" class="flex user-control">
+                  <i class="bi bi-person-circle"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex user-control">
+                  <i class="bi bi-gear-fill"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    
+      <main>
+        
+    
+        <div class="products flex">
+          
+        </div> <!-- end of .products -->
+      </main>
+    
+      <div id="editModal" class="modal">
+        <form id="productForm" class="edit-product">
+          <div class="product-image flex">
+            <div class="display">
+              <img src="static/images/placeholder-image.png" alt="EVGA 3080">
+            </div>
+            <label>
+              Select Image
+              <input type="file" id="productImage" style="display:none" class="select-file" accept=".jpg, .png, .jpeg, .webp">
+            </label>
+          </div>
+    
+          <div class="product-inputs">
+            <div class="flex">
+              <label class="flex">
+                Brand
+                <select name="brand" id="brandSelect">
+                  <option value="">-- Please Choose a Brand --</option>
+                  <option value="asus">ASUS</option>
+                  <option value="evga">EVGA</option>
+                  <option value="gigabyte">Gigabyte</option>
+                  <option value="msi">MSI</option>
+                </select>
+              </label>
+              <label class="flex">
+                Price
+                <input id="price" type="number" value="0" onfocus="value=''"/>
+              </label>
+            </div> <!-- end of flex -->
+    
+            <div class="flex">
+              <label class="flex">
+                Description
+                <textarea name="description" class="description" id="description" placeholder="Maximum 300 characters"
+                rows="5"
+                maxlength="300"></textarea>
+              </label>
+            </div> <!-- end of flex -->
+    
+            <input type="submit" class="add-product" value="Update Product"/>
+          </div> <!-- end of .product-inputs -->
+        </form> <!-- end of .edit-product -->
+      </div> <!-- end of .modal -->
     </div>
-  </header>
+  </div>
 
-  <main>
-    <div class="side-bar">
-      <ul class="dash-nav">
-        <li>
-          <a href="write.html">
-            Add Product
-            <i class="bi bi-plus-circle-fill"></i>
-          </a>
-        </li>
-      </ul>
-    </div> <!-- end of .side-bar -->
-
-    <div class="products flex">
-      
-    </div> <!-- end of .products -->
-  </main>
 </body>
 </html>

@@ -6,12 +6,14 @@ import {
 import { ref as databaseRef, push, set, get } from "firebase/database";
 import { db, storage } from "../libs/firebaseConfig";
 
-document.forms["productForm"].addEventListener("submit", onAddProduct);
+pageInit();
 
-document.querySelector("#productImage").addEventListener("change", onImageSelected);
+function pageInit(){
+  document.forms["productForm"].addEventListener("submit", onAddProduct);
 
-function getRndInteger(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) ) + min;
+  document.querySelector("#productImage").addEventListener("change", onImageSelected);
+
+  populateSelectList();
 }
 
 // Product form handler function
@@ -27,6 +29,32 @@ function onImageSelected(e) {
 
   // Update the display with the requested image
   document.querySelector(".display img").src = URL.createObjectURL(file);
+}
+
+async function populateSelectList(){
+  const dataRef = databaseRef(db, 'brands/');
+  const dataSnapshot = await get(dataRef)
+  const brands = dataSnapshot.toJSON();
+  const brandList = jsonToArray(brands);
+  const selectList = document.querySelector('#brandSelect')
+  brandList.forEach((brand) => {
+    const option = document.createElement("option")
+    option.textContent = brand;
+    console.log(option)
+  })
+}
+
+function jsonToArray(json){
+  var brandList = [];
+  let keys = Object.keys(json);
+  keys.forEach(function(key){
+    brandList.push(key)
+  })
+  return brandList;
+}
+
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
 async function uploadNewProduct() {
@@ -61,9 +89,10 @@ async function uploadNewProduct() {
   set(itemRef, {
     key: itemRef.key,
     urlPath,
-    sku: `GG-${getRndInteger(000000, 999999)}`,
+    sku: `GG-${itemRef.key.substring(0, 7)}`,
     price,
     description,
     brandLogo,
   });
 }
+

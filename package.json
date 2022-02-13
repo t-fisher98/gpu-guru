@@ -2,11 +2,12 @@
   "name": "gpu-guru",
   "version": "1.0.0",
   "description": "Storefront dashboard to sell graphics cards",
-  "main": "index.js",
+  "default": "src/index.html",
   "scripts": {
     "clean": "rm -rf node_modules .git .parcel-cache dist .DS_Store",
     "static": "cp -rf ./src/static .dist",
-    "start": "npx parcel src/index.html"
+    "start": "npx parcel src/*.html",
+    "build": "npx parcel build src/*.html"
   },
   "repository": {
     "type": "git",

@@ -57,6 +57,9 @@
 
   <main>
     <div class="side-bar">
+      <button id="toggle" class="toggle">
+        <i class="bi bi-arrow-bar-left"></i>
+      </button>
       <ul class="dash-nav">
         <li>
           <a href="write.html">
@@ -75,8 +78,7 @@
           <div class="display">
             <img src="static/images/placeholder-image.png" alt="EVGA 3080">
           </div>
-  
-          <label>
+          <label class="image-select">
             Select Image
             <input type="file" id="productImage" style="display:none" class="select-file" accept=".jpg, .png, .jpeg, .webp">
           </label>
@@ -86,7 +88,7 @@
           <div class="flex">
             <label class="flex">
               Brand
-              <select name="brand" id="brandSelect">
+              <select class="brand" name="brand" id="brandSelect">
                 <option value="">-- Please Choose a Brand --</option>
                 <option value="asus">ASUS</option>
                 <option value="evga">EVGA</option>
@@ -94,13 +96,12 @@
                 <option value="msi">MSI</option>
               </select>
             </label>
-    
             <label class="flex">
               Price
-              <input id="price" type="number" value="0" onfocus="value=''"/>
+              <input id="price" class="price" type="number" value="0" onfocus="value=''"/>
             </label>
-          </div>
-          
+          </div> <!-- end of flex -->
+
           <div class="flex">
             <label class="flex">
               Description
@@ -108,16 +109,12 @@
               rows="5"
               maxlength="300"></textarea>
             </label>
-          </div>
-  
+          </div> <!-- end of flex -->
+
           <input type="submit" class="add-product" value="Add Product"/>
-        </div>
+        </div> <!-- end of .product-inputs -->
       </form>
     <div>
   </main>
-
-  <footer>
-
-  </footer>
 </body>
 </html>

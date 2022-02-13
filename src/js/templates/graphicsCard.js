@@ -41,8 +41,9 @@ function addProductControls(element) {
 
 function onEditProduct(e) {
   const key = e.currentTarget.dataset.key;
-  sessionStorage.setItem("key", key);
-  window.location.href = ('update.html');
+  const template = `
+    
+  `;
 }
 
 function onRemoveProduct(e) {

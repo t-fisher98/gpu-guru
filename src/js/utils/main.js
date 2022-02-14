@@ -1,5 +1,5 @@
 import { ref as dataRef, get } from "firebase/database";
-import { db } from "../libs/firebaseConfig"
+import { db } from '../libs/firebaseConfig'
 import { graphicsCard } from "../templates/graphicsCard"
 
 pageInit();

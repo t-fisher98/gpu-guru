@@ -26,15 +26,12 @@
 </head>
 <body>
   <div class="page-content flex">
-
     <div class="sidebar">
       <div class="sidebar-dark flex">
-        <a href="index.html">
-          <div class="flex">
-            <img src="static/favicon/gpu-logo.svg" alt="SVG of a graphical processing unit" class="logo">
-            <h1>Guru</h1>
-          </div>
-        </a>
+        <div class="flex">
+          <img src="static/favicon/gpu-logo.svg" alt="SVG of a graphical processing unit" class="logo" id="logo">
+          <h1>Guru</h1>
+        </div>
         <button id="toggle" class="toggle">
           <i class="bi bi-arrow-left-right"></i>
         </button>
@@ -60,8 +57,14 @@
     <div class="dashboard-wrapper">
       <header>
         <div class="flex">
+          <div class="search-box flex">
+            <div>
+              <i class="bi bi-search"></i>
+            </div>
+            <input type="search" placeholder="Search">
+          </div>
           <nav class="app-bar">
-            <ul class="flex">
+            <ul class="user-controls flex">
               <li>
                 <a href="#" class="flex user-control">
                   <i class="bi bi-person-circle"></i>
@@ -78,56 +81,54 @@
       </header>
     
       <main>
-        
-    
+        <div>
+          <h2 class="dashboard">Dashboard</h2>
+        </div>
         <div class="products flex">
           
         </div> <!-- end of .products -->
-      </main>
-    
-      <div id="editModal" class="modal">
-        <form id="productForm" class="edit-product">
-          <div class="product-image flex">
-            <div class="display">
-              <img src="static/images/placeholder-image.png" alt="EVGA 3080">
+
+        <div id="editModal" class="modal">
+          <form id="productForm editProduct" class="edit-product">
+            <div class="product-image flex">
+              <div class="display">
+                <img src="static/images/placeholder-image.png" alt="EVGA 3080">
+              </div>
+              <label class="image-select">
+                Select Image
+                <input type="file" id="productImage" style="display:none" class="select-file" accept=".jpg, .png, .jpeg, .webp">
+              </label>
             </div>
-            <label>
-              Select Image
-              <input type="file" id="productImage" style="display:none" class="select-file" accept=".jpg, .png, .jpeg, .webp">
-            </label>
-          </div>
-    
-          <div class="product-inputs">
-            <div class="flex">
-              <label class="flex">
-                Brand
-                <select name="brand" id="brandSelect">
-                  <option value="">-- Please Choose a Brand --</option>
-                  <option value="asus">ASUS</option>
-                  <option value="evga">EVGA</option>
-                  <option value="gigabyte">Gigabyte</option>
-                  <option value="msi">MSI</option>
-                </select>
-              </label>
-              <label class="flex">
-                Price
-                <input id="price" type="number" value="0" onfocus="value=''"/>
-              </label>
-            </div> <!-- end of flex -->
-    
-            <div class="flex">
-              <label class="flex">
-                Description
-                <textarea name="description" class="description" id="description" placeholder="Maximum 300 characters"
-                rows="5"
-                maxlength="300"></textarea>
-              </label>
-            </div> <!-- end of flex -->
-    
-            <input type="submit" class="add-product" value="Update Product"/>
-          </div> <!-- end of .product-inputs -->
-        </form> <!-- end of .edit-product -->
-      </div> <!-- end of .modal -->
+
+            <div class="product-inputs">
+              <div class="flex">
+                <label class="flex">
+                  Brand
+                  <select class="brand" name="brand" id="brandSelect">
+                    <option value="default">-- Please Select a Brand --</option>
+                  </select>
+                </label>
+                <label class="flex">
+                  Price
+                  <input id="price" class="price" type="number" placeholder="0"/>
+                </label>
+              </div> <!-- end of flex -->
+
+              <div class="flex">
+                <label class="flex">
+                  Description
+                  <textarea name="description" class="description" id="description" placeholder="Maximum 300 characters"
+                  rows="5"
+                  maxlength="300"></textarea>
+                </label>
+              </div> <!-- end of flex -->
+
+              <input type="submit" id="updateProduct" class="add-product" value="Update Product"/>
+              <input type="submit" id="cancelUpdate" class="add-product" value="Cancel">
+            </div> <!-- end of .product-inputs -->
+          </form>
+        </div> <!-- end of .modal -->
+      </main>
     </div>
   </div>
 

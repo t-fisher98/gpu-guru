@@ -25,96 +25,108 @@
   <script type="module" src="./js/utils/write.js" defer></script>
 </head>
 <body>
-  <header>
-    <div class="container flex">
-      <a href="index.html">
-        <h1>
-          <div class="flex">
-            GPU
-            <img src="static/favicon/gpu-logo.svg" alt="SVG of a graphical processing unit">
-          </div>
-           <span>Guru</span>
-        </h1>
-      </a>
-      <nav class="app-bar">
-        <ul class="flex">
+  <div class="page-content flex">
+    <div class="sidebar">
+      <div class="sidebar-dark flex">
+        <div class="flex">
+          <img src="static/favicon/gpu-logo.svg" alt="SVG of a graphical processing unit" class="logo" id="logo">
+          <h1>Guru</h1>
+        </div>
+        <button id="toggle" class="toggle">
+          <i class="bi bi-arrow-left-right"></i>
+        </button>
+      </div>
+      <div class="sidebar-content">
+        <ul class="sidebar-nav">
           <li>
-            <a href="#" class="flex user-controls">
-              <i class="bi bi-person-circle"></i>
-              Account
+            <a href="index.html" class="flex">
+              <i class="bi bi-house"></i>
+              <span>Dashboard</span>
             </a>
           </li>
           <li>
-            <a href="#" class="flex user-controls">
-              <i class="bi bi-gear-fill"></i>
-              Settings
+            <a href="write.html" class="flex">
+              <i class="bi bi-plus-circle"></i>
+              <span>Add Product</span>
             </a>
           </li>
         </ul>
-      </nav>
-    </div>
-  </header>
+      </div>
+    </div> <!-- sidebar -->
 
-  <main>
-    <div class="side-bar">
-      <button id="toggle" class="toggle">
-        <i class="bi bi-arrow-bar-left"></i>
-      </button>
-      <ul class="dash-nav">
-        <li>
-          <a href="write.html">
-            Add Product
-            <i class="bi bi-plus-circle-fill"></i>
-          </a>
-        </li>
-      </ul>
-    </div> <!-- end of .side-bar -->
+    <div class="dashboard-wrapper">
+      <header>
+        <div class="flex">
+          <div class="search-box flex">
+            <div>
+              <i class="bi bi-search"></i>
+            </div>
+            <input type="search" placeholder="Search">
+          </div> <!-- end of .search-box -->
 
-    <div class="new-product flex">
-      <h2>Add New Product</h2>
+          <nav class="app-bar">
+            <ul class="user-controls flex">
+              <li>
+                <a href="#" class="flex user-control">
+                  <i class="bi bi-person-circle"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex user-control">
+                  <i class="bi bi-gear-fill"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div> <!-- end of flex -->
+      </header>
 
-      <form id="productForm" class="add-new-product">
-        <div class="product-image flex">
-          <div class="display">
-            <img src="static/images/placeholder-image.png" alt="EVGA 3080">
+      <main>
+        <div class="new-product flex">
+          <div>
+            <h2>Add New Product</h2>
           </div>
-          <label class="image-select">
-            Select Image
-            <input type="file" id="productImage" style="display:none" class="select-file" accept=".jpg, .png, .jpeg, .webp">
-          </label>
-        </div>
+          
+          <form id="productForm" class="add-new-product">
+            <div class="product-image flex">
+              <div class="display">
+                <img src="static/images/placeholder-image.png" alt="EVGA 3080">
+              </div>
+              <label class="image-select">
+                Select Image
+                <input type="file" id="productImage" style="display:none" class="select-file" accept=".jpg, .png, .jpeg, .webp">
+              </label>
+            </div>
 
-        <div class="product-inputs">
-          <div class="flex">
-            <label class="flex">
-              Brand
-              <select class="brand" name="brand" id="brandSelect">
-                <option value="">-- Please Choose a Brand --</option>
-                <option value="asus">ASUS</option>
-                <option value="evga">EVGA</option>
-                <option value="gigabyte">Gigabyte</option>
-                <option value="msi">MSI</option>
-              </select>
-            </label>
-            <label class="flex">
-              Price
-              <input id="price" class="price" type="number" value="0" onfocus="value=''"/>
-            </label>
-          </div> <!-- end of flex -->
+            <div class="product-inputs">
+              <div class="flex">
+                <label class="flex">
+                  Brand
+                  <select class="brand" name="brand" id="brandSelect">
+                    <option value=>-- Please Select a Brand --</option>
+                  </select>
+                </label>
+                <label class="flex">
+                  Price
+                  <input id="price" class="price" type="number" placeholder="0"/>
+                </label>
+              </div> <!-- end of flex -->
 
-          <div class="flex">
-            <label class="flex">
-              Description
-              <textarea name="description" class="description" id="description" placeholder="Maximum 300 characters"
-              rows="5"
-              maxlength="300"></textarea>
-            </label>
-          </div> <!-- end of flex -->
+              <div class="flex">
+                <label class="flex">
+                  Description
+                  <textarea name="description" class="description" id="description" placeholder="Maximum 300 characters"
+                  rows="5"
+                  maxlength="300"></textarea>
+                </label>
+              </div> <!-- end of flex -->
 
-          <input type="submit" class="add-product" value="Add Product"/>
-        </div> <!-- end of .product-inputs -->
-      </form>
-    <div>
-  </main>
+              <input type="submit" class="add-product" value="Add Product"/>
+            </div> <!-- end of .product-inputs -->
+          </form>
+        <div>
+      </main>
+    </div> <!-- end of .dashboard-wrapper -->
+  </div> <!-- end of .page-content -->
 </body>
 </html>

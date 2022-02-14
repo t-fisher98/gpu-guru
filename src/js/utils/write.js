@@ -9,11 +9,28 @@ import { db, storage } from "../libs/firebaseConfig";
 pageInit();
 
 function pageInit(){
+  const sideBar = document.querySelector(".sidebar");
+  const toggleButton = document
+    .querySelector("#toggle")
+    .addEventListener("click", onToggleSideBar);
+  const logo = document
+    .querySelector("#logo")
+    .addEventListener("click", onToggleSideBar);
+
   document.forms["productForm"].addEventListener("submit", onAddProduct);
 
   document.querySelector("#productImage").addEventListener("change", onImageSelected);
 
   populateSelectList();
+
+  function onToggleSideBar(e) {
+    let toggleButton = document.querySelector("#toggle");
+    if (e.currentTarget == toggleButton) {
+      sideBar.style.width = "5rem";
+    } else {
+      sideBar.style.width = "18.75rem";
+    }
+  }
 }
 
 // Product form handler function
@@ -35,40 +52,38 @@ async function populateSelectList(){
   const dataRef = databaseRef(db, 'brands/');
   const dataSnapshot = await get(dataRef)
   const brands = dataSnapshot.toJSON();
-  const brandList = jsonToArray(brands);
   const selectList = document.querySelector('#brandSelect')
+  const brandList = jsonToArray(brands);
   brandList.forEach((brand) => {
     const option = document.createElement("option")
     option.textContent = brand;
-    console.log(option)
+    selectList.append(option)
   })
 }
 
-function jsonToArray(json){
-  var brandList = [];
-  let keys = Object.keys(json);
-  keys.forEach(function(key){
-    brandList.push(key)
-  })
-  return brandList;
-}
-
-function getRndInteger(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) ) + min;
+function jsonToArray(json) {
+  var list = [];
+  let values = Object.values(json);
+  values.forEach(function (value) {
+    list.push(value);
+  });
+  return list;
 }
 
 async function uploadNewProduct() {
   // Reference variables to the dom elements
   const file = document.querySelector("#productImage").files[0];
-  const brand = document.querySelector("#brandSelect").value.trim() + '-logo.png';
+  const brand = document.querySelector("#brandSelect").value.toLowerCase().trim() + '-logo.png';
   const price = document.querySelector("#price").value;
-  const description = document.querySelector("#description").value;
+  const description = document.querySelector("#description").value.trim();
 
   // Reference to where the image will be stored
   const imageRef = await storageRef(storage, `product-images/${file.name}`);
 
   // Reference to where the brand logo is stored
   const brandRef = await storageRef(storage, `brand-logos/${brand}`);
+  
+  const logoPath = brandRef.fullPath;
 
   // Reference to where the data object will be stored
   const dataRef = await databaseRef(db, 'products');
@@ -77,22 +92,28 @@ async function uploadNewProduct() {
   const brandLogo = await getDownloadURL(brandRef);
 
   // Uploading the image to the storage bucket
-  await uploadBytes(imageRef, file);
+  const uploadResult = await uploadBytes(imageRef, file);
 
   // Url to the product image in storage
   const urlPath = await getDownloadURL(imageRef);
 
+  // Direct path to the image in storage
+  const imagePath = uploadResult.metadata.fullPath;
+
   // Pushing the data object to the database
   const itemRef = await push(dataRef);
-  alert("Product added to the database")
 
-  set(itemRef, {
+  await set(itemRef, {
     key: itemRef.key,
+    imagePath,
     urlPath,
-    sku: `GG-${itemRef.key.substring(0, 7)}`,
+    sku: `GG-${itemRef.key.substring(1, 8).toUpperCase()}`,
     price,
     description,
     brandLogo,
+    logoPath
   });
+
+  alert("Product added!");
 }
 

@@ -2,14 +2,21 @@ import { ref as dataRef, get } from "firebase/database";
 import { db } from "../libs/firebaseConfig"
 import { graphicsCard } from "../templates/graphicsCard"
 
-const dashboard = document.querySelector('.products');
-const sideBar = document.querySelector('.side-bar');
-
 pageInit();
 
 async function pageInit() {
-  const toggleButton = document.querySelector('#toggle').addEventListener('click', onToggleSideBar);
+  const sideBar = document.querySelector(".sidebar");
+  const toggleButton = document.querySelector("#toggle")
+  const logo = document.querySelector("#logo")
+  const modal = document.querySelector('.modal')
+  document
+    .querySelector("#productImage")
+    .addEventListener("change", onImageSelected);
+  window.addEventListener("click", onCloseModal);
 
+  toggleButton.addEventListener("click", onToggleSideBar)
+  logo.addEventListener("click", onToggleSideBar);
+  
   const productRef = dataRef(db, "products/");
   const rentalSnapShot = await get(productRef);
   const productData = rentalSnapShot.val();
@@ -18,16 +25,26 @@ async function pageInit() {
     const card = graphicsCard(product);
     document.querySelector(".products").append(card);
   });
-}
 
-function onToggleSideBar(e) {
-  if (sideBar.style.width != "2.5rem") {
-    sideBar.style.width = "2.5rem";
-    dashboard.style.marginLeft = "6.5rem";
-    e.currentTarget.style.transform = "rotate(180deg)";
-  } else {
-    sideBar.style.width = "10rem";
-    dashboard.style.marginLeft = "14rem";
-    e.currentTarget.style.transform = null;
+  function onToggleSideBar(e) {
+    if (e.currentTarget == toggleButton) {
+      sideBar.style.width = "5rem";
+    } else {
+      sideBar.style.width = "18.75rem";
+    }
+  }
+
+  function onImageSelected(e) {
+    // Get a reference to the selected file
+    let file = e.target.files[0];
+
+    // Update the display with the requested image
+    document.querySelector(".display img").src = URL.createObjectURL(file);
+  }
+
+  function onCloseModal(e){
+    if (e.target == modal) {
+      modal.style.visibility = "hidden";
+    }
   }
 }

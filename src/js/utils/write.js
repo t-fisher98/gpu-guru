@@ -114,6 +114,10 @@ async function uploadNewProduct() {
     logoPath
   });
 
-  alert("Product added!");
+  if(!confirm("Would you like to add another product?")){
+    window.location.assign('index.html')
+  }else{
+    window.location.reload();
+  }
 }
 

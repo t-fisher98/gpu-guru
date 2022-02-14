@@ -9,10 +9,12 @@ async function pageInit() {
   const toggleButton = document.querySelector("#toggle")
   const logo = document.querySelector("#logo")
   const modal = document.querySelector('.modal')
+  const cancelButton = document.querySelector('#cancelUpdate')
   document
     .querySelector("#productImage")
     .addEventListener("change", onImageSelected);
   window.addEventListener("click", onCloseModal);
+  cancelButton.addEventListener('click', onCloseModal)
 
   toggleButton.addEventListener("click", onToggleSideBar)
   logo.addEventListener("click", onToggleSideBar);
@@ -43,7 +45,7 @@ async function pageInit() {
   }
 
   function onCloseModal(e){
-    if (e.target == modal) {
+    if (e.target == modal || e.target == cancelButton) {
       modal.style.visibility = "hidden";
     }
   }

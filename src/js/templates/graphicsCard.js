@@ -1,5 +1,5 @@
 import {ref as storageRef, uploadBytes, getDownloadURL} from 'firebase/storage'
-import {ref as databaseRef, get, set, push} from 'firebase/database'
+import {ref as databaseRef, get, set, push, remove} from 'firebase/database'
 import {db, storage} from '../libs/firebaseConfig'
 
 function graphicsCard({ key, urlPath, sku, description, price, brandLogo }) {
@@ -76,7 +76,6 @@ async function onEditProduct(e) {
   }
 
   const key = e.currentTarget.dataset.key
-  console.log(key)
   const productRef = await databaseRef(db, `products/${key}`)
   const productSnapshot = await get(productRef)
   
@@ -113,14 +112,20 @@ async function onEditProduct(e) {
       logoPath,
     });
 
-    alert("Product updated!");
+    window.location.assign('index.html');
   }
 }
 
-function onRemoveProduct(e) {
+async function onRemoveProduct(e) {
   const key = e.currentTarget.dataset.key;
-  sessionStorage.setItem("key", key);
-  window.location.assign('delete.html');
+  const dataRef = await databaseRef(db, `products/${key}`);
+  const dataSnapshot = await get(dataRef);
+  const data = dataSnapshot.val();
+  if(confirm(`Product SKU: ${data.sku}
+  Are you sure you want to delete this product?`)){
+    remove(dataRef)
+    window.location.reload()
+  }
 }
 
 function setFormValues({

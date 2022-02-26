@@ -4,7 +4,7 @@
   "description": "Storefront dashboard to sell graphics cards",
   "default": "src/index.html",
   "scripts": {
-    "clean": "rm -rf node_modules .git .parcel-cache dist .DS_Store",
+    "clean": "rimraf node_modules .git .parcel-cache dist .DS_Store",
     "static": "cp -rf ./src/static .dist",
     "start": "npx parcel --no-cache src/*.html",
     "build": "npx parcel build src/*.html"
